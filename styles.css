@@ -298,3 +298,63 @@ h1 {
     .pixel-egg { width: 50px; height: 50px; }
     .timer-display { font-size: 2.5em; }
 }
+
+.fade-out {
+  animation: fadeOut 0.25s ease forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.25s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.25s ease forwards;
+}
+
+.slide-down {
+  animation: slideDown 0.25s ease forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
