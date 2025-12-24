@@ -7,40 +7,68 @@ const timerEgg     = document.getElementById('timerEgg');
 
 
 const eggs = [
-    { name: 'Soft Boiled',   time: 360, color: '#FFE87C' },
-    { name: 'Medium Soft',  time: 420, color: '#FFD93D' },
-    { name: 'Medium Hard',  time: 540, color: '#FFA500' },
-    { name: 'Hard Boiled',  time: 660, color: '#FF8C00' }
+    { name: 'Soft Boiled',   time: 360, color: '#FFE87C', img: 'assets/img/Soft Boiled.png' },
+    { name: 'Medium Soft',  time: 420, color: '#FFD93D', img: 'assets/img/Medium Soft.png' },
+    { name: 'Medium Hard',  time: 540, color: '#FFA500', img: 'assets/img/Medium Hard.png' },
+    { name: 'Hard Boiled',  time: 660, color: '#FF8C00', img: 'assets/img/Hard Boiled.png' }
 ];
 
 
-let interval = null;
-let timeLeft = 0;
+let timerInterval = null;
+let remainingTime = 0;
+
+function setupTimer(index) {
+  clearInterval(timerInterval)
+
+  const egg = eggs[index]
+  remainingTime = egg.time
+
+  setupTimerUI(egg)
+
+  timerInterval = setInterval(() => {
+    remainingTime--
+    updateDisplay()
+
+    if (remainingTime <= 0) {
+      clearInterval(timerInterval)
+      eggFinished()
+    }
+  }, 1000)
+}
 
 
 function startTimer(index) {
-    const egg = eggs[index];
-    timeLeft = egg.time;
+  console.log('Selected egg:', index)
 
-    /* Animasi keluar grid */
-    gridView.classList.add('fade-out');
+  const egg = document
+    .querySelectorAll('.egg-card')[index]
+    .querySelector('.pixel-egg')
+
+  egg.classList.add('egg-bounce')
+
+  setTimeout(() => {
+    egg.classList.remove('egg-bounce')
+  }, 350)
+
+  setTimeout(() => {
+    gridView.classList.add('fade-out')
 
     setTimeout(() => {
-        gridView.classList.add('hidden');
-        gridView.classList.remove('fade-out');
+      gridView.classList.add('hidden')
+      gridView.classList.remove('fade-out')
 
-        /* Tampilkan timer */
-        timerView.classList.add('active', 'slide-up');
+      timerView.classList.add('active', 'slide-up')
 
-        setupTimerUI(egg);
-        startCountdown();
+      setupTimer(index)
 
-        setTimeout(() => {
-            timerView.classList.remove('slide-up');
-        }, 250);
-
-    }, 250);
+      setTimeout(() => {
+        timerView.classList.remove('slide-up')
+      }, 250)
+    }, 250)
+  }, 200)
 }
+
+
 
 
 function stopTimer() {
@@ -64,36 +92,58 @@ function stopTimer() {
 }
 
 
+
 function setupTimerUI(egg) {
-    eggName.textContent = egg.name;
+  eggName.textContent = egg.name
+  timerEgg.src = egg.img
+  updateDisplay()
 
-    timerEgg.querySelectorAll('rect').forEach(rect => {
-        rect.setAttribute('fill', egg.color);
-    });
-
-    updateDisplay();
+  updateDisplay()
 }
 
-function startCountdown() {
-    clearInterval(interval);
 
-    interval = setInterval(() => {
-        timeLeft--;
+function startCountdown() {
+    clearInterval(timerInterval);
+
+    timerInterval = setInterval(() => {
+        remainingTime--;
         updateDisplay();
 
-        if (timeLeft <= 0) {
-            clearInterval(interval);
-            alert('🎉 Your egg is ready! 🥚');
-            stopTimer();
+        if (remainingTime <= 0) {
+            clearInterval(timerInterval)
+            eggFinishAnimation()
         }
     }, 1000);
 }
 
 function updateDisplay() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
+  const minutes = Math.floor(remainingTime / 60)
+  const seconds = remainingTime % 60
 
-    timerDisplay.textContent =
-        `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  timerDisplay.textContent =
+    `${minutes}:${seconds.toString().padStart(2, '0')}`
 }
 
+
+function eggFinishAnimation() {
+  const egg = document.getElementById('timerEgg')
+  const container = egg.parentElement
+
+  // Shake dulu
+  egg.classList.add('egg-shake')
+
+  setTimeout(() => {
+    egg.style.visibility = 'hidden'
+    egg.classList.remove('egg-shake')
+
+    const rect = egg.getBoundingClientRect()
+    const parentRect = container.getBoundingClientRect()
+
+    // Text selesai
+    const text = document.createElement('div')
+    text.className = 'finished-text'
+    text.innerText = '🥚 Egg is ready!'
+
+    container.appendChild(text)
+  }, 400)
+}
