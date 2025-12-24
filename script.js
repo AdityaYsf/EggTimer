@@ -8,7 +8,7 @@ const beepSound    = new Audio('assets/sound/Alarm.mp3');
 
 
 const eggs = [
-    { name: 'Soft Boiled',   time: 5, color: '#FFE87C', img: 'assets/img/Soft Boiled.png' },
+    { name: 'Soft Boiled',   time: 360, color: '#FFE87C', img: 'assets/img/Soft Boiled.png' },
     { name: 'Medium Soft',  time: 420, color: '#FFD93D', img: 'assets/img/Medium Soft.png' },
     { name: 'Medium Hard',  time: 540, color: '#FFA500', img: 'assets/img/Medium Hard.png' },
     { name: 'Hard Boiled',  time: 660, color: '#FF8C00', img: 'assets/img/Hard Boiled.png' }
@@ -162,4 +162,5 @@ function closePopup() {
   document.getElementById('finishPopup').classList.remove('active')
   stopTimer()
 }
+
 
