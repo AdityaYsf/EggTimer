@@ -1,3 +1,7 @@
+/* =====================
+   RESET & BASE
+===================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
 * {
@@ -17,6 +21,9 @@ body {
 }
 
 
+/* =====================
+   CONTAINER
+===================== */
 .container {
     position: relative;
     width: 100%;
@@ -43,6 +50,9 @@ body {
 }
 
 
+/* =====================
+   PIXEL DECORATION
+===================== */
 .pixel-decoration {
     position: absolute;
     width: 40px;
@@ -73,6 +83,9 @@ body {
 }
 
 
+/* =====================
+   TYPOGRAPHY
+===================== */
 h1 {
     text-align: center;
     font-size: 2.5em;
@@ -93,6 +106,9 @@ h1 {
 }
 
 
+/* =====================
+   GRID & CARD
+===================== */
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -175,9 +191,12 @@ h1 {
 }
 
 
+/* =====================
+   PIXEL EGG
+===================== */
 .pixel-egg {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -185,6 +204,9 @@ h1 {
 }
 
 
+/* =====================
+   TIMER VIEW
+===================== */
 .timer-view {
     display: none;
     text-align: center;
@@ -208,6 +230,9 @@ h1 {
 }
 
 
+/* =====================
+   BUTTON
+===================== */
 .stop-btn {
     padding: 15px 40px;
     font-size: 1.2em;
@@ -227,6 +252,9 @@ h1 {
 }
 
 
+/* =====================
+   CUSTOM TITLE BAR
+===================== */
 .titlebar {
     position: absolute;
     inset: 0 0 auto 0;
@@ -279,7 +307,9 @@ h1 {
 .close-app:hover::after { content: '×'; opacity: 1; }
 
 
-/* RESPONSIVE */
+/* =====================
+   RESPONSIVE
+===================== */
 @media (max-width: 768px) {
     .container { max-width: 450px; padding: 60px 20px 30px; }
     h1 { font-size: 2em; }
@@ -361,6 +391,67 @@ h1 {
   }
 }
 
+/* Animasi Egg Bounce */
 
+.egg-bounce {
+  animation: eggBounce 0.35s ease;
+}
 
+@keyframes eggBounce {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.9);
+  }
+  55% {
+    transform: scale(1.08);
+  }
+  75% {
+    transform: scale(0.97);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
+.egg-shake {
+  animation: eggShake 0.4s ease-in-out;
+}
+
+@keyframes eggShake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-5deg); }
+  40% { transform: rotate(5deg); }
+  60% { transform: rotate(-4deg); }
+  80% { transform: rotate(4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Pixel explode */
+.pixel-piece {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #FFE87C;
+  animation: explode 0.6s ease forwards;
+}
+
+@keyframes explode {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.3);
+  }
+}
+
+/* Finished text */
+.finished-text {
+  margin-top: 20px;
+  font-size: 1.6em;
+  color: #ff6b6b;
+  animation: fadeIn 0.4s ease forwards;
+}
