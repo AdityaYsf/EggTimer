@@ -124,7 +124,7 @@ function eggFinishAnimation() {
   beepInterval = setInterval(() => {
     beepSound.currentTime = 0
     beepSound.play()
-  }, 800) // jarak antar beep (ms)
+  }, 1000) // jarak antar beep (ms)
 
   // tampilkan popup
   document.getElementById('finishPopup').classList.add('active')
@@ -140,3 +140,4 @@ function closePopup() {
   document.getElementById('finishPopup').classList.remove('active')
   stopTimer()
 }
+
