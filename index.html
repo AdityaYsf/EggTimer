@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Egg Timer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="titlebar">
+            <div class="window-controls">
+                <button class="btn minimize-app" onclick="window.api.minimize()"></button>
+                <button class="btn close-app" onclick="window.api.close()"></button>
+            </div>
+        </div>
+        <h1>🥚 Egg Timer</h1>
+        <p class="subtitle">Pick your perfect egg!</p>
+
+        <div class="grid-view" id="gridView">
+            <div class="grid">
+                <div class="egg-card" onclick="startTimer(0)">
+                    <svg class="pixel-egg" viewBox="0 0 9 9">
+                        <rect x="3" y="1" width="3" height="1" fill="#FFE87C"/>
+                        <rect x="2" y="2" width="5" height="1" fill="#FFE87C"/>
+                        <rect x="1" y="3" width="7" height="3" fill="#FFE87C"/>
+                        <rect x="2" y="6" width="5" height="1" fill="#FFE87C"/>
+                        <rect x="3" y="7" width="3" height="1" fill="#FFE87C"/>
+                    </svg>
+                    <h3>Soft Boiled</h3>
+                    <p>6 minutes</p>
+                </div>
+
+                <div class="egg-card" onclick="startTimer(1)">
+                    <svg class="pixel-egg" viewBox="0 0 9 9">
+                        <rect x="3" y="1" width="3" height="1" fill="#FFD93D"/>
+                        <rect x="2" y="2" width="5" height="1" fill="#FFD93D"/>
+                        <rect x="1" y="3" width="7" height="3" fill="#FFD93D"/>
+                        <rect x="2" y="6" width="5" height="1" fill="#FFD93D"/>
+                        <rect x="3" y="7" width="3" height="1" fill="#FFD93D"/>
+                        <rect x="4" y="4" width="1" height="1" fill="#FFB000"/>
+                    </svg>
+                    <h3>Medium Soft</h3>
+                    <p>7 minutes</p>
+                </div>
+
+                <div class="egg-card" onclick="startTimer(2)">
+                    <svg class="pixel-egg" viewBox="0 0 9 9">
+                        <rect x="3" y="1" width="3" height="1" fill="#FFA500"/>
+                        <rect x="2" y="2" width="5" height="1" fill="#FFA500"/>
+                        <rect x="1" y="3" width="7" height="3" fill="#FFA500"/>
+                        <rect x="2" y="6" width="5" height="1" fill="#FFA500"/>
+                        <rect x="3" y="7" width="3" height="1" fill="#FFA500"/>
+                        <rect x="4" y="4" width="1" height="1" fill="#FF8C00"/>
+                    </svg>
+                    <h3>Medium Hard</h3>
+                    <p>9 minutes</p>
+                </div>
+
+                <div class="egg-card" onclick="startTimer(3)">
+                    <svg class="pixel-egg" viewBox="0 0 9 9">
+                        <rect x="3" y="1" width="3" height="1" fill="#FF8C00"/>
+                        <rect x="2" y="2" width="5" height="1" fill="#FF8C00"/>
+                        <rect x="1" y="3" width="7" height="3" fill="#FF8C00"/>
+                        <rect x="2" y="6" width="5" height="1" fill="#FF8C00"/>
+                        <rect x="3" y="7" width="3" height="1" fill="#FF8C00"/>
+                        <rect x="4" y="4" width="1" height="1" fill="#CC6600"/>
+                    </svg>
+                    <h3>Hard Boiled</h3>
+                    <p>11 minutes</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="timer-view" id="timerView">
+            <svg class="pixel-egg" viewBox="0 0 9 9" id="timerEgg">
+                <rect x="3" y="1" width="3" height="1" fill="#FFE87C"/>
+                <rect x="2" y="2" width="5" height="1" fill="#FFE87C"/>
+                <rect x="1" y="3" width="7" height="3" fill="#FFE87C"/>
+                <rect x="2" y="6" width="5" height="1" fill="#FFE87C"/>
+                <rect x="3" y="7" width="3" height="1" fill="#FFE87C"/>
+            </svg>
+            <div class="egg-name" id="eggName">Soft Boiled</div>
+            <div class="timer-display" id="timerDisplay">6:00</div>
+            <button class="stop-btn" onclick="stopTimer()">Stop Timer</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
