@@ -44,11 +44,23 @@ function startTimer(index) {
 
 
 function stopTimer() {
-    clearInterval(interval);
-    interval = null;
+  // animasi keluar timer
+  timerView.classList.add('slide-down')
 
-    timerView.classList.remove('active');
-    gridView.classList.remove('hidden');
+  setTimeout(() => {
+    timerView.classList.remove('active', 'slide-down')
+
+    // tampilkan grid lagi
+    gridView.classList.remove('hidden')
+    gridView.classList.add('fade-in')
+
+    setTimeout(() => {
+      gridView.classList.remove('fade-in')
+    }, 250)
+  }, 250)
+
+  // stop logic timer kamu di sini
+  clearInterval(timerInterval)
 }
 
 
@@ -84,3 +96,4 @@ function updateDisplay() {
     timerDisplay.textContent =
         `${minutes}:${seconds.toString().padStart(2, '0')}`;
 }
+
