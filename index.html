@@ -24,52 +24,25 @@
         <div class="grid-view" id="gridView">
             <div class="grid">
                 <div class="egg-card" onclick="startTimer(0)">
-                    <svg class="pixel-egg" viewBox="0 0 9 9">
-                        <rect x="3" y="1" width="3" height="1" fill="#FFE87C"/>
-                        <rect x="2" y="2" width="5" height="1" fill="#FFE87C"/>
-                        <rect x="1" y="3" width="7" height="3" fill="#FFE87C"/>
-                        <rect x="2" y="6" width="5" height="1" fill="#FFE87C"/>
-                        <rect x="3" y="7" width="3" height="1" fill="#FFE87C"/>
-                    </svg>
+                    <img src="assets/img/Soft Boiled.png" class="pixel-egg" alt="Soft Boiled Egg">
                     <h3>Soft Boiled</h3>
                     <p>6 minutes</p>
                 </div>
 
                 <div class="egg-card" onclick="startTimer(1)">
-                    <svg class="pixel-egg" viewBox="0 0 9 9">
-                        <rect x="3" y="1" width="3" height="1" fill="#FFD93D"/>
-                        <rect x="2" y="2" width="5" height="1" fill="#FFD93D"/>
-                        <rect x="1" y="3" width="7" height="3" fill="#FFD93D"/>
-                        <rect x="2" y="6" width="5" height="1" fill="#FFD93D"/>
-                        <rect x="3" y="7" width="3" height="1" fill="#FFD93D"/>
-                        <rect x="4" y="4" width="1" height="1" fill="#FFB000"/>
-                    </svg>
+                    <img src="assets/img/Medium Soft.png" class="pixel-egg" alt="Medium Soft Egg">
                     <h3>Medium Soft</h3>
                     <p>7 minutes</p>
                 </div>
 
                 <div class="egg-card" onclick="startTimer(2)">
-                    <svg class="pixel-egg" viewBox="0 0 9 9">
-                        <rect x="3" y="1" width="3" height="1" fill="#FFA500"/>
-                        <rect x="2" y="2" width="5" height="1" fill="#FFA500"/>
-                        <rect x="1" y="3" width="7" height="3" fill="#FFA500"/>
-                        <rect x="2" y="6" width="5" height="1" fill="#FFA500"/>
-                        <rect x="3" y="7" width="3" height="1" fill="#FFA500"/>
-                        <rect x="4" y="4" width="1" height="1" fill="#FF8C00"/>
-                    </svg>
+                    <img src="assets/img/Medium Hard.png" class="pixel-egg" alt="Medium Hard Egg">
                     <h3>Medium Hard</h3>
                     <p>9 minutes</p>
                 </div>
 
                 <div class="egg-card" onclick="startTimer(3)">
-                    <svg class="pixel-egg" viewBox="0 0 9 9">
-                        <rect x="3" y="1" width="3" height="1" fill="#FF8C00"/>
-                        <rect x="2" y="2" width="5" height="1" fill="#FF8C00"/>
-                        <rect x="1" y="3" width="7" height="3" fill="#FF8C00"/>
-                        <rect x="2" y="6" width="5" height="1" fill="#FF8C00"/>
-                        <rect x="3" y="7" width="3" height="1" fill="#FF8C00"/>
-                        <rect x="4" y="4" width="1" height="1" fill="#CC6600"/>
-                    </svg>
+                    <img src="assets/img/Hard Boiled.png" class="pixel-egg" alt="Hard Boiled Egg">
                     <h3>Hard Boiled</h3>
                     <p>11 minutes</p>
                 </div>
@@ -77,13 +50,7 @@
         </div>
 
         <div class="timer-view" id="timerView">
-            <svg class="pixel-egg" viewBox="0 0 9 9" id="timerEgg">
-                <rect x="3" y="1" width="3" height="1" fill="#FFE87C"/>
-                <rect x="2" y="2" width="5" height="1" fill="#FFE87C"/>
-                <rect x="1" y="3" width="7" height="3" fill="#FFE87C"/>
-                <rect x="2" y="6" width="5" height="1" fill="#FFE87C"/>
-                <rect x="3" y="7" width="3" height="1" fill="#FFE87C"/>
-            </svg>
+            <img src="assets/img/Soft Boiled.png" class="pixel-egg" id="timerEgg" alt="Soft Boiled Egg">
             <div class="egg-name" id="eggName">Soft Boiled</div>
             <div class="timer-display" id="timerDisplay">6:00</div>
             <button class="stop-btn" onclick="stopTimer()">Stop Timer</button>
@@ -91,7 +58,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
-
-
