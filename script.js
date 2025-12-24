@@ -114,28 +114,50 @@ function updateDisplay() {
 function eggFinishAnimation() {
   clearInterval(timerInterval)
 
-  // pastikan tidak double beep
-  clearInterval(beepInterval)
+  const egg = document.getElementById('timerEgg')
+  const crack = document.getElementById('eggCrack')
 
-  // mainkan beep terus (pip pip pip)
+  // 1. Shake dulu
+  egg.classList.add('shake')
+
+  // 2. Munculin crack
+  setTimeout(() => {
+    crack.style.opacity = 1
+  }, 400)
+
+  // 3. Pecah
+  setTimeout(() => {
+    egg.classList.remove('shake')
+    egg.classList.add('egg-burst')
+    crack.style.opacity = 0
+  }, 800)
+
+  // 4. Mulai beep looping
   beepSound.currentTime = 0
   beepSound.play()
 
   beepInterval = setInterval(() => {
     beepSound.currentTime = 0
     beepSound.play()
-  }, 1000) // jarak antar beep (ms)
+  }, 1000)
 
-  // tampilkan popup
-  document.getElementById('finishPopup').classList.add('active')
+  // 5. Popup muncul
+  setTimeout(() => {
+    document.getElementById('finishPopup').classList.add('active')
+  }, 1200)
 }
 
 
+
 function closePopup() {
-  // stop beep
   clearInterval(beepInterval)
   beepSound.pause()
   beepSound.currentTime = 0
+
+  const egg = document.getElementById('timerEgg')
+  egg.classList.remove('egg-burst')
+  egg.style.transform = ''
+  egg.style.opacity = 1
 
   document.getElementById('finishPopup').classList.remove('active')
   stopTimer()
