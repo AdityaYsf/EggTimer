@@ -4,10 +4,11 @@ const timerView = document.getElementById('timerView');
 const timerDisplay = document.getElementById('timerDisplay');
 const eggName      = document.getElementById('eggName');
 const timerEgg     = document.getElementById('timerEgg');
+const beepSound    = new Audio('assets/sound/Alarm.mp3');
 
 
 const eggs = [
-    { name: 'Soft Boiled',   time: 360, color: '#FFE87C', img: 'assets/img/Soft Boiled.png' },
+    { name: 'Soft Boiled',   time: 5, color: '#FFE87C', img: 'assets/img/Soft Boiled.png' },
     { name: 'Medium Soft',  time: 420, color: '#FFD93D', img: 'assets/img/Medium Soft.png' },
     { name: 'Medium Hard',  time: 540, color: '#FFA500', img: 'assets/img/Medium Hard.png' },
     { name: 'Hard Boiled',  time: 660, color: '#FF8C00', img: 'assets/img/Hard Boiled.png' }
@@ -16,6 +17,7 @@ const eggs = [
 
 let timerInterval = null;
 let remainingTime = 0;
+let beepInterval = null;
 
 function setupTimer(index) {
   clearInterval(timerInterval)
@@ -31,7 +33,7 @@ function setupTimer(index) {
 
     if (remainingTime <= 0) {
       clearInterval(timerInterval)
-      eggFinished()
+      eggFinishAnimation()
     }
   }, 1000)
 }
@@ -96,24 +98,8 @@ function stopTimer() {
 function setupTimerUI(egg) {
   eggName.textContent = egg.name
   timerEgg.src = egg.img
-  updateDisplay()
 
   updateDisplay()
-}
-
-
-function startCountdown() {
-    clearInterval(timerInterval);
-
-    timerInterval = setInterval(() => {
-        remainingTime--;
-        updateDisplay();
-
-        if (remainingTime <= 0) {
-            clearInterval(timerInterval)
-            eggFinishAnimation()
-        }
-    }, 1000);
 }
 
 function updateDisplay() {
@@ -126,24 +112,31 @@ function updateDisplay() {
 
 
 function eggFinishAnimation() {
-  const egg = document.getElementById('timerEgg')
-  const container = egg.parentElement
+  clearInterval(timerInterval)
 
-  // Shake dulu
-  egg.classList.add('egg-shake')
+  // pastikan tidak double beep
+  clearInterval(beepInterval)
 
-  setTimeout(() => {
-    egg.style.visibility = 'hidden'
-    egg.classList.remove('egg-shake')
+  // mainkan beep terus (pip pip pip)
+  beepSound.currentTime = 0
+  beepSound.play()
 
-    const rect = egg.getBoundingClientRect()
-    const parentRect = container.getBoundingClientRect()
+  beepInterval = setInterval(() => {
+    beepSound.currentTime = 0
+    beepSound.play()
+  }, 800) // jarak antar beep (ms)
 
-    // Text selesai
-    const text = document.createElement('div')
-    text.className = 'finished-text'
-    text.innerText = '🥚 Egg is ready!'
+  // tampilkan popup
+  document.getElementById('finishPopup').classList.add('active')
+}
 
-    container.appendChild(text)
-  }, 400)
+
+function closePopup() {
+  // stop beep
+  clearInterval(beepInterval)
+  beepSound.pause()
+  beepSound.currentTime = 0
+
+  document.getElementById('finishPopup').classList.remove('active')
+  stopTimer()
 }
