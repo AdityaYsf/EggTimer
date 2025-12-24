@@ -507,3 +507,47 @@ h1 {
   from { transform: scale(0.7); opacity: 0 }
   to   { transform: scale(1);   opacity: 1 }
 }
+
+/* Animasi Telur Pecah */
+
+.pixel-egg {
+  transition: transform 0.2s;
+}
+
+/* shake sebelum pecah */
+.pixel-egg.shake {
+  animation: eggShake 0.4s infinite;
+}
+
+@keyframes eggShake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  50% { transform: translateX(4px); }
+  75% { transform: translateX(-4px); }
+  100% { transform: translateX(0); }
+}
+
+/* crack effect */
+.egg-crack {
+  position: absolute;
+  width: 120px;
+  height: 160px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* pecah */
+.egg-burst {
+  animation: burst 0.5s forwards;
+}
+
+@keyframes burst {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.3) rotate(10deg);
+    opacity: 0;
+  }
+}
